@@ -1,6 +1,7 @@
 package com.hfad.guess_number_game;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,11 +23,23 @@ public class BlankFragment extends Fragment {
     private EditText input;
     private TextView result;
     private Button luck;
-
+    private EditText inputTwo;
     private String et;
+    private String etTwo;
+    private SendNumber resultShow;
 
     public BlankFragment() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+
+
+        super.onAttach(context);
+
+        resultShow = (SendNumber) context;
     }
 
 
@@ -36,13 +49,19 @@ public class BlankFragment extends Fragment {
         // Inflate the layout for this fragment
        View v =inflater.inflate(R.layout.fragment_blank, container, false);
         input = v.findViewById(R.id.number);
+        inputTwo=v.findViewById(R.id.numbertwo);
         result = v.findViewById(R.id.result);
         luck = v.findViewById(R.id.button);
          et = input.getText().toString();
+         etTwo = inputTwo.getText().toString();
 
          if(et.equals("")){
 
              et = "0";
+         }
+         if(etTwo.equals("")){
+
+             etTwo = "0";
          }
 
 
@@ -51,33 +70,23 @@ public class BlankFragment extends Fragment {
             public void onClick(View v) {
                 int resultNum = (int) (Math.random() * 10);
                 result.setText(String.valueOf(resultNum));
-                int guess = Integer.parseInt(et);
-                if (resultNum==guess){
-                    luck.setText("Get Your Prize here");
-                    if(luck.getText().equals("Get Your Prize here")){
-                        luck.setText("CHECK MY LUCK");
-                        FragmentManager fm = getFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        BlankFragment2 res = new BlankFragment2();
-                        ft.replace(R.id.fragment,res);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                    }else {
-                        luck.setText("CHECK MY LUCK");
-
-                    }
-
-                }else{
-                    Toast.makeText(getContext(), "Your Guess Is Not Correct!!!!", Toast.LENGTH_SHORT).show();
-
-                }
+                int rr = Integer.parseInt(result.getText().toString());
+                resultShow.getNum(rr);
 
                 input.setText("");
+                inputTwo.setText("");
 
 
             }
         });
        return v;
     }
+
+    public interface SendNumber{
+
+        void getNum(int num);
+    }
+
+
 
 }

@@ -22,18 +22,45 @@
         android:text="WELCOME TO GUESS NUMBER GAME
 (Less Than 10)"/>
 
-    <EditText
-        android:id="@+id/number"
-        android:layout_marginBottom="10dp"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:inputType="number"
-        android:hint="your Number"
-        android:background="#7911d4"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/number"
+            android:layout_margin="10dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:inputType="number"
+            android:hint="Number"
+            android:layout_weight="1"
+            android:background="#7911d4"
+            />
+
+        <EditText
+            android:id="@+id/numbertwo"
+            android:layout_margin="10dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:inputType="number"
+            android:hint="Number"
+            android:layout_weight="1"
+            android:background="#7911d4"
+            />
+
+
+
+    </LinearLayout>
+
+
 
 
     <TextView

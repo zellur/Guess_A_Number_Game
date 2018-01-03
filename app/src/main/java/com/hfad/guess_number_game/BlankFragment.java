@@ -21,11 +21,9 @@ import android.widget.Toast;
 public class BlankFragment extends Fragment {
 
     private EditText input;
-    private TextView result;
+    private EditText result;
     private Button luck;
     private EditText inputTwo;
-    private String et;
-    private String etTwo;
     private SendNumber resultShow;
 
     public BlankFragment() {
@@ -52,41 +50,30 @@ public class BlankFragment extends Fragment {
         inputTwo=v.findViewById(R.id.numbertwo);
         result = v.findViewById(R.id.result);
         luck = v.findViewById(R.id.button);
-         et = input.getText().toString();
-         etTwo = inputTwo.getText().toString();
-
-         if(et.equals("")){
-
-             et = "0";
-         }
-         if(etTwo.equals("")){
-
-             etTwo = "0";
-         }
 
 
         luck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int resultNum = (int) (Math.random() * 10);
-                result.setText(String.valueOf(resultNum));
-                int rr = Integer.parseInt(result.getText().toString());
-                resultShow.getNum(rr);
-
+                resultShow.getNum(resultNum);
                 input.setText("");
                 inputTwo.setText("");
+                result.setText("");
 
 
             }
         });
+
+
        return v;
+
     }
 
     public interface SendNumber{
 
         void getNum(int num);
     }
-
 
 
 }
